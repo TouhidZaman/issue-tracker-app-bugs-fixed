@@ -40,17 +40,19 @@ const fetchIssues = () => {
   const issuesList = document.getElementById('issuesList');
   issuesList.innerHTML = '';
 
-  for (var i = 0; i < issues.length; i++) {
-    const {id, description, severity, assignedTo, status} = issues[i];
-
-    issuesList.innerHTML +=   `<div class="well">
-                              <h6>Issue ID: ${id} </h6>
-                              <p><span class="label label-info"> ${status} </span></p>
-                              <h3> ${description} </h3>
-                              <p><span class="glyphicon glyphicon-time"></span> ${severity}</p>
-                              <p><span class="glyphicon glyphicon-user"></span> ${assignedTo}</p>
-                              <a href="#" onclick="setStatusClosed(${id})" class="btn btn-warning">Close</a>
-                              <a href="#" onclick="deleteIssue(${id})" class="btn btn-danger">Delete</a>
-                              </div>`;
+  if(issues) {
+      for (const issue of issues) {
+      const {id, description, severity, assignedTo, status} = issue;
+      
+      issuesList.innerHTML +=   `<div class="well">
+                                <h6>Issue ID: ${id} </h6>
+                                <p><span class="label label-info"> ${status} </span></p>
+                                <h3> ${description} </h3>
+                                <p><span class="glyphicon glyphicon-time"></span> ${severity}</p>
+                                <p><span class="glyphicon glyphicon-user"></span> ${assignedTo}</p>
+                                <a href="#" onclick="setStatusClosed(${id})" class="btn btn-warning">Close</a>
+                                <a href="#" onclick="deleteIssue(${id})" class="btn btn-danger">Delete</a>
+                                </div>`;
+    } 
   }
 }
