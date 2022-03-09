@@ -5,9 +5,14 @@ function submitIssue(e) {
   const description = getInputValue('issueDescription');
   const severity = getInputValue('issueSeverity');
   const assignedTo = getInputValue('issueAssignedTo');
+  
+  if(!description || !severity || !assignedTo) {
+    alert("Please enter something first")
+    return; //handling Empty input Field
+  }
+  
   const id = Math.floor(Math.random()*100000000) + '';
   const status = 'Open';
-
   const issue = { id, description, severity, assignedTo, status };
   let issues = [];
   if (localStorage.getItem('issues')){
