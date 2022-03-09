@@ -36,8 +36,9 @@ const setStatusClosed = id => {
 
 const deleteIssue = id => {
   const issues = JSON.parse(localStorage.getItem('issues'));
-  const remainingIssues = issues.filter( issue.id !== id )
+  const remainingIssues = issues.filter(issue => issue.id !== id )
   localStorage.setItem('issues', JSON.stringify(remainingIssues));
+  fetchIssues()
 }
 
 const fetchIssues = () => {
@@ -61,7 +62,7 @@ const fetchIssues = () => {
                                 <p><span class="glyphicon glyphicon-time"></span> ${severity}</p>
                                 <p><span class="glyphicon glyphicon-user"></span> ${assignedTo}</p>
                                 <a href="#" onclick="setStatusClosed('${id}')" class="btn btn-warning">Close</a>
-                                <a href="#" onclick="deleteIssue(${id})" class="btn btn-danger">Delete</a>
+                                <a href="#" onclick="deleteIssue('${id}')" class="btn btn-danger">Delete</a>
                                 </div>`;
     } 
   }
